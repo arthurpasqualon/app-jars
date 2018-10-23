@@ -5,3 +5,5 @@
 # Activate venv: source venv/bin/activave
 
 
+# requirements
+# Django, Pillow
