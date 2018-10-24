@@ -11,3 +11,8 @@ def index(request):
     }
     return render(request, template_name, context)
 
+def details(request, slug):
+    course = Course.objects.get(slug=slug)
+    context = {'course':course}
+    template_name = 'courses/detail.html'
+    return render(request, template_name, context)
