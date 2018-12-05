@@ -1,0 +1,32 @@
+#main-content { min-height: 320px; }
+
+body { min-height: 100%; }
+
+.container{ 
+    padding: 24px 0 64px;
+}
+
+html { height: 100%; }
+
+.pads { padding: 0 16px; }
+
+footer {
+    padding: 16px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+@media only screen and (min-width: 993px) {
+    .container { width: 80%; }
+
+    .pads { padding: 0 24px; }
+}
+
+.file-field-clear { display: none; }
+
+.mtop { margin-top: 32px; }
+
+@media (min-width: 993px) {
+    #main-content { min-height: 480px; }
+}
