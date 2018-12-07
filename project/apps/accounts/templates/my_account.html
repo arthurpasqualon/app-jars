@@ -1,0 +1,49 @@
+{% extends 'header_footer.html' %}
+
+{% load material_form %}
+
+{% block head_about %}
+<title>Minha conta | Dataglass</title>
+{% endblock %}
+
+{% block body_class %}gray-bg{% endblock %}
+
+{% block main_content %}
+    
+<div id="my-account" class="container">
+    <nav id="breadcrumbs">
+        <span>Minha conta</span>
+    </nav>
+            <div class="card card-profile">
+                <div class="row">
+                    <div class="card-content">
+                        <div class="col s12 m3">   
+                            <div class="center">
+                                <span class="card-title">{{user.first_name}} {{user.last_name}}</span>
+                                <a href="{% url 'accounts:my_account_profile_picture' %}" class="change-profile-picture">
+                                        <img class="profile-image" src="{{ request.user.profile_image_url }}">
+                                </a><br>
+                                    <a href="{% url 'accounts:my_account_profile_picture' %}" class="change-profile-picture">
+                                            <i class="material-icons">edit</i>alterar foto
+                              
+                                    </a>
+                        </div>
+                        </div>
+                        <div class="col s12 m9">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {% form form=form %}{% endform %}
+                                    <div class="mtop">
+                                        <button type="submit" name="_submit" class="btn waves-effect waves-light">Salvar</button>
+                                        <a href="{% url 'accounts:my_account' %}" class="btn btn-flat white waves-effect">Cancelar</a>
+                                    </div>
+                                </form>                           
+                        </div>
+                    </div>    
+                </div>
+            </div>
+</div>
+
+
+
+{% endblock %}

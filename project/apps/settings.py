@@ -37,12 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
+    'material.theme.green',  # django material forms bug, green actually shows *blue*
+    'material',
+    'easy_thumbnails',
     'materialize',
 
     'apps.accounts',
-    'apps.courses',
+    'apps.courses', 
     'apps.core',
+    # apps.auth
+
 ]
 
 MIDDLEWARE = [
@@ -86,6 +91,8 @@ DATABASES = {
     }
 }
 
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

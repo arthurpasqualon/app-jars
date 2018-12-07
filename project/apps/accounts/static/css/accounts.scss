@@ -1,0 +1,72 @@
+#my-account {
+    a.change-profile-picture {
+        display: block;
+        margin: 0 auto 16px;
+        width: 96px;
+        font-size: 13px;
+        vertical-align: middle;
+        text-align: center;
+        color: #134A9E;
+
+        .profile-picture { margin-bottom: 4px; }
+
+        i {
+            position: relative;
+            top: 3px;
+            left: -2px;
+            font-size: 18px;
+        }
+    }
+
+    .profile-picture, .company-logo {
+        display: block;
+        margin: 24px auto;
+        width: 96px;
+        height: 96px;
+        border-radius: 96px;
+        border: 1px solid #eee;
+    }
+}
+
+#my-account-profile-picture .profile-picture {
+    display: block;
+    width: 96px;
+    height: 96px;
+    border-radius: 96px;
+    border: 1px solid #eee;
+}
+
+@media only screen and (min-width: 600px) {
+    #my-account {
+        a.change-profile-picture { width: 128px; }
+
+        .profile-picture, .company-logo, .profile-picture {
+            width: 128px;
+            height: 128px;
+            border-radius: 128px;
+        }
+    }
+}
+  .center {
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+.profile-image{
+    width: 128px;
+    height: 128px;
+}
+
+.card-cad{
+    height: 484px;
+    width: 750px;
+    padding: 20px;
+}
+
+
+
+.card-profile{
+    padding: 20px;
+}
+
