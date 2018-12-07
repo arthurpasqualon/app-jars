@@ -4,34 +4,18 @@ from django.db import models
 from django.utils import timezone
 
 
-class AccountsSettingsManager(models.Manager):
-    def get(self):
-        accounts_settings = cache.get('accounts_settings')
-        if not accounts_settings:
-            accounts_settings = super().get()
-            cache.set('accounts_settings', accounts_settings)
-        return accounts_settings
-
-
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, first_name, last_name, email, password, **extra_fields):
-        email = email.strip().lower()
-        user = self.model(first_name=first_name, last_name=last_name, email=email, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+    # def dashboards_active(self, user):
+    #     from project.apps.bime.models import BimeDashboard
+    #     removed = user.company.companydashboardremoved_set.filter(user=user).values_list('dashboard_id', flat=True)
+    #     dashboard_ids = user.company.companydashboard_set.filter(is_active=True).exclude(dashboard_id__in=removed).values_list('dashboard_id', flat=True)
+    #     return BimeDashboard.objects.filter(id__in=dashboard_ids, is_activated=True, is_published=True)
+    
+    # def dashboards_inactive(self, user):
+    #     from project.apps.bime.models import BimeDashboard
+    #     removed = user.company.companydashboardremoved_set.filter(user=user).values_list('dashboard_id', flat=True)
+    #     dashboard_ids = user.company.companydashboard_set.filter(is_active=True).exclude(dashboard_id__in=removed).values_list('dashboard_id', flat=True)
+    #     return BimeDashboard.objects.filter(is_activated=True, is_published=True).exclude(id__in=dashboard_ids)
 
-    def create_user(self, first_name, last_name, email, password, **extra_fields):
-        extra_fields.setdefault('is_superuser', False)
-        extra_fields.setdefault('is_staff', False)
-        user = self._create_user(first_name, last_name, email, password, **extra_fields)
-        return user
-
-    def create_superuser(self, first_name, last_name, email, password, **extra_fields):
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('email_confirmed', timezone.now())
-        user = self._create_user(first_name, last_name, email, password, **extra_fields)
-        return user
