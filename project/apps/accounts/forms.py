@@ -6,6 +6,16 @@ from django.contrib.auth.forms import PasswordResetForm
 
 from django.contrib.auth.models import User
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('url', 'location', 'company')
+
 # class StudentForm(forms.ModelForm):
 #     class Meta:
 #         model = Student
