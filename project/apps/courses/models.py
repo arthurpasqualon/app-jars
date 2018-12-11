@@ -1,5 +1,5 @@
 from django.db import models
-from apps.accounts.models import Institution
+from apps.accounts.models import Institution, User
 
 
 class CourseManager(models.Manager):
@@ -75,7 +75,8 @@ class Event (models.Model):
 class Program (models.Model):
     name = models.CharField(max_length=100,verbose_name='nome')
     slug = models.SlugField(blank=True,verbose_name='slug')
-    image = models.ImageField(upload_to='events/img', null=True, blank=True, verbose_name='imagem')
+    image = models.ImageField(upload_to='program/img', null=True, blank=True, verbose_name='imagem')
+    certificate = models.ImageField(upload_to='certificates/img', null=True, blank=True, verbose_name='certificado')
     # future RichTextField
     description = models.TextField (blank=True, verbose_name='descrição')
     active = models.BooleanField(default=False,verbose_name='ativo')
@@ -107,3 +108,30 @@ class Module (models.Model):
         verbose_name="aula"
         verbose_name_plural="aulas"
         ordering = ['name']
+
+
+
+class CourseParticipation (models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, max_length=100, on_delete=models.CASCADE, verbose_name='usuario')
+    course = models.ForeignKey('Course', null=True, blank=True, max_length=100, on_delete=models.CASCADE, verbose_name='curso')
+    can_emmit_certification = models.BooleanField(default=False, verbose_name='pode emitir certificado')
+    was_achiever = models.BooleanField(default=False, verbose_name='aluno')
+    was_adviser = models.BooleanField(default=False, verbose_name='voluntário')
+
+    class Meta:
+        verbose_name="participação"
+        verbose_name_plural="participações"
+        ordering = ['user']
+
+
+class EventParticipation (models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, max_length=100, on_delete=models.CASCADE, verbose_name='usuario')
+    event = models.ForeignKey('Event', null=True, blank=True, max_length=100, on_delete=models.CASCADE, verbose_name='evento')
+    can_emmit_certification = models.BooleanField(default=False, verbose_name='pode emitir certificado')
+    was_achiever = models.BooleanField(default=False, verbose_name='aluno')
+    was_adviser = models.BooleanField(default=False, verbose_name='voluntário')
+
+    class Meta:
+        verbose_name="participação"
+        verbose_name_plural="participações"
+        ordering = ['user']
