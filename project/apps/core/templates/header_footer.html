@@ -1,0 +1,27 @@
+{% include 'base.html' %}
+
+{% block body %}
+        <nav class="light-blue lighten-1 valign-wrapper" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Jars</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{% url 'core:home' %}">Início</a></li>
+                    <li><a href="{% url 'courses:index' %}">Cursos</a></li>
+                    <li><a href="{% url 'core:contact' %}">Contato</a></li>
+                </ul>
+                <ul id="nav-mobile" class="sidenav">
+                    <li><a href="{% url 'core:home' %}">Início</a></li>
+                    <li><a href="{% url 'courses:index' %}">Cursos</a></li>
+                    <li><a href="{% url 'core:contact' %}">Contato</a></li>
+                </ul>
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+        <div id="main-content">
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+                <div class="container center">
+                    Associação Junior Achievement do Rio Grande do Sul - Todos os direitos reservados
+                </div>
+        </footer>
+{% endblock %}

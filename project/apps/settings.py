@@ -65,7 +65,7 @@ ROOT_URLCONF = 'apps.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,7 +92,8 @@ DATABASES = {
 }
 
 AUTH_USER_MODEL = 'accounts.User'
-# LOGIN_URL = ‘/’
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL='/'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('apps.core.urls',namespace='core')),
     path('cursos/', include('apps.courses.urls',namespace='courses')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 if settings.DEBUG:

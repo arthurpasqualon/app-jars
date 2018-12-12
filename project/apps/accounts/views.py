@@ -1,37 +1,44 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.forms import PasswordResetForm
+
+from .forms import EditProfileForm
 
 
 from . import forms
 
 
-class MyAccountView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
-    template_name = 'my_account.html'
-    form_class = forms.UpdateProfile
-    success_url = reverse_lazy('')
-    success_message = "Suas informações foram alteradas com sucesso."
 
-    def get_object(self, queryset=None):
-        return self.request.user
+# def edit_profile(request):
+#     if request.method == 'POST':
+#         form = EditProfileForm(request.POST, instance=request.user)
 
-    def update_profile(request):
-        args = {}
+#         if form.is_valid():
+#             form.save()
+#             return redirect(reverse('accounts:minha'))
+#     else:
+#         form = EditProfileForm(instance=request.user)
+#         args = {'form': form}
+#         return render(request, 'my_account.html', args)
 
-        if request.method == 'POST':
-            form = UpdateProfile(request.POST, instance=request.user)
-            if form.is_valid():
-                form.save()
-                return HttpResponseRedirect(reverse('update_profile_success'))
-        else:
-            form = UpdateProfile()
+    # def user_registration(request):
+    #     args = {}
 
-        args['form'] = form
-        return render(request, 'my_account.html', args)
+    #     if request.method == 'POST':
+    #         form = UpdateProfile(request.POST, instance=request.user)
+    #         if form.is_valid():
+    #             form.save()
+    #             return HttpResponseRedirect(reverse('update_profile_success'))
+    #     else:
+    #         form = UpdateProfile()
 
 
+
+    
 # class MyAccountProfilePictureView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 #     template_name = 'my_account_profile_picture.html'
 #     form_class = forms.MyAccountProfilePictureForm
